@@ -15,13 +15,24 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v=2">
 </head>
 <body>
-<div id="app" aria-live="polite"></div>
+<div id="app" aria-live="polite"><p id="carregando" style="padding:40px 24px;text-align:center;font:600 18px system-ui,sans-serif">Carregando o Baby Pet…</p></div>
 <div id="sheet-root"></div>
 <div id="toast" role="status"></div>
 <noscript>O Baby Pet precisa do JavaScript ligado para funcionar.</noscript>
-<script src="app.js"></script>
+<script>
+(function(){
+  function msg(t){var a=document.getElementById('app');if(a&&document.getElementById('carregando')){a.innerHTML='<div style="padding:32px 22px;font:16px/1.5 system-ui,sans-serif"><b style="font-size:19px">Não consegui abrir o app</b><p style="margin:10px 0 0">'+t+'</p></div>';}}
+  window.addEventListener('error',function(e){
+    var t=e.target;
+    if(t&&t.tagName==='SCRIPT'){msg('Não encontrei o arquivo <b>'+(t.getAttribute('src')||'').split('?')[0]+'</b> no site. Confira se ele foi enviado ao GitHub com esse nome exato.');}
+    else if(e.message){msg('Erro: '+e.message+(e.filename?' ('+e.filename.split('/').pop()+')':''));}
+  },true);
+  setTimeout(function(){msg('O arquivo <b>app.js</b> não carregou. Confira se ele está no GitHub, na mesma pasta do index.html.');},5000);
+})();
+</script>
+<script src="app.js?v=2"></script>
 </body>
 </html>
