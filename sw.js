@@ -1,10 +1,8 @@
 /* Baby Pet — funciona sem internet.
    Páginas e código: tenta a internet primeiro (assim as atualizações chegam sozinhas) e usa a cópia salva se estiver offline.
    Imagens: usa a cópia salva primeiro. */
-const CACHE = 'babypet-v2';
-const BASE = ['./', 'index.html', 'styles.css', 'app.js', 'manifest.webmanifest',
-  'assets/babi.png', 'assets/cuidadora.png', 'assets/cuidadora-busto.png', 'assets/botao.png',
-  'assets/icon-192.png', 'assets/icon-512.png', 'assets/favicon-32.png'];
+const CACHE = 'babypet-v3';
+const BASE = ['./', 'index.html', 'manifest.json', 'icon-192.png', 'icon-512.png'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => Promise.all(BASE.map(u => c.add(u).catch(() => {})))).then(() => self.skipWaiting()));
